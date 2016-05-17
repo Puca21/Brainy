@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+<head>
+
+	<meta charset="utf-8" />
+	<!-- Set the viewport width to device width for mobile -->
+	<meta name="viewport" content="width=device-width" />
+
+	<title>Brainy</title>
+  
+	<!-- CSS Files -->
+	<link rel="stylesheet" href="stylesheets/foundation.min.css">
+	<link rel="stylesheet" href="stylesheets/main.css">
+	<link rel="stylesheet" href="stylesheets/app.css">
+	<link rel="stylesheet" href="stylesheets/style.css">
+	
+ 
+	<!-- JS Files -->
+	<!-- jquery and countdownTimer js -->
+	<script type="text/javascript" src="js/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="js/countdownTimer/jquery.countdown360.js" charset="utf-8"></script>
+	<script type="text/javascript" src="js/countdownTimer/countdown.js" charset="utf-8"></script>
+	<script type="text/javascript" src="frameworkJS/modernizr.foundation.js"></script>
+	<script type="text/javascript" src="js/jquery/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript" src="js/jquery/jquery.leanModal.min.js"></script>
+	
+	<!-- numbers js -->
+	<script type="text/javascript" src = "js/number/easeljs-0.8.0.min.js"></script>
+	<script type="text/javascript" src = "js/number/tweenjs-0.6.0.min.js"></script>
+	<script type="text/javascript" src = "js/number/advGuess.js"></script>
+	<script type="text/javascript" src = "js/number/guess.js"></script>
+  
+	<!-- memory js -->
+	<script type="text/javascript" src="./js/memory/begMemoryGame.js"></script>
+	<script type="text/javascript" src="./js/memory/advMemoryGame.js"></script>
+  
+	<!-- quiz js -->
+	<script type="text/javascript" src="js/quiz/beginnerQuestionsList.js"></script>
+	<script type="text/javascript" src="js/quiz/advancedQuestionsList.js"></script>
+	<script type="text/javascript" src="js/quiz/beginnerQuiz.js"></script>
+	<script type="text/javascript" src="js/quiz/advancedQuiz.js"></script>
+  
+	<!-- hangman js -->
+	<script type="text/javascript" src="js/hangman/hangman.js"></script>
+  
+	<!-- simonSays js-->
+	<script type="text/javascript" src="js/simonSays/simonSays.js"></script>
+   
+	<!-- Google fonts -->
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Playfair+Display:400italic' rel='stylesheet' type='text/css' />
+
+	<!-- IE Fix for HTML5 Tags -->
+	<!--[if lt IE 9]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+</head>
+
+<body>
+   
+<!-- ######################## Header ######################## -->
+        
+    <header>
+        <h1 class="heading_supersize">Brainy</h1>
+        <h2 class="welcome_text">Brain training game</h2>    
+    </header>
+        
+<!-- ######################## Section ######################## -->
+
+<section class="section_main">
+
+    <h2 style="text-align:center">Choose your difficulty level!</h2>
+      
+    <div class="row">
+      
+        <article class="six columns">
+            <div class="panel">
+				<h3>Beginner</h3>
+                <p><img src="img/logo/BegImg.png" alt="BegImg"/></p>
+                <a rel = "leanModal" href="#beginnerModal" class="btn">Play</a>
+            </div>
+				
+			<div id="beginnerModal" class="begPopupContainer" style="display:none;">
+		    	<header class="popupHeader">
+		    		<span class="header_title">Choose a game to play</span>
+		    		<span class="modal_close"><img src="./img/cross.png"><i class="fa fa-times"></i></span>
+		    	</header>
+		
+		    	<section class="popupBody">
+					<div class = "beginner_menu">
+						<ul>
+							<a><li class="menuList"><a href="#" id="begMemoryGame" class="btn">Memory</a></li>
+							<a><li class="menuList"><a href="#" id="begQuizGame" class="btn">Quiz</a></li>
+							<a><li class="menuList"><a href="#" id="simonSaysGame" class="btn">Simon Says</a></li>
+							<a><li class="menuList"><a href="#" id="begNumbersGame" class="btn">Numbers</a></li>	
+						</ul>
+				  	</div>
+						
+		    		<!-- memory game -->
+		    		<div class="beg_memory_game">
+						<div id="beg_game_time"></div>
+						<div id = "beg_memory_board"></div>
+							<script>newBoard();</script>
+							
+					</div>
+						
+					<div class="beg_quiz_game">
+						<div id="beg_countdown"></div>
+							<h2 id ="beg_quiz_status"></h2>
+							<div id="beg_quiz">
+								<div id = "begQuizBody"></div>
+							</div>	
+					</div>
+					
+					<div class="simon_says_game">
+					<div class="simonSaysGame">
+						<ul>
+							<li class="red" data-tile="1"></li>
+							<li class="blue" data-tile="2"></li>
+							<li class="yellow" data-tile="3"></li>
+							<li class="green" data-tile="4"></li>
+						</ul>
+					</div>
+					
+					<div class="game-info">
+						<h2>Round: <span data-round="0">0</span></h2>
+						<button data-action="start">Start</button>
+						<p data-action="lose">You lost after <span data-round="0"></span> rounds!</p>
+						<button id="begSBackBtn">Back To Menu</button>
+					</div>
+					
+					</div>
+					<div class="beg_numbers_game">
+					<div id = "begMain">
+						<canvas id = "canvas4" width = "550" height = "550"></canvas>
+						<script>init();</script>
+					</div>
+					</div>
+					
+				</section>
+			</div>
+	    </article>
+			
+        <article class="six columns">
+            <div class="panel">
+                <h3>Advanced</h3>
+                <p><img src="img/logo/AdvImg.png" alt="AdvImg"/></p>
+                <a rel = "leanModal" href="#advancedModal" class="btn">Play</a>
+				  
+				<div id="advancedModal" class="advPopupContainer" style="display:none;">
+		    		<header class="popupHeader">
+						<span class="header_title">Choose a game to play</span>
+						<span class="modal_close"><img src="./img/cross.png"><i class="fa fa-times"></i></span>
+		    		</header>
+		
+		    		<section class="popupBody">
+						<div class = "advanced_menu">
+							<ul>
+								<a><li class="menuList"><a href="#" id="advMemoryGame" class="btn">Memory</a></li>
+								<a><li class="menuList"><a href="#" id="advQuizGame" class="btn">Quiz</a></li>
+								<a><li class="menuList"><a href="#" id="hangmanGame" class="btn">Hangman</a></li>
+								<a><li class="menuList"><a href="#" id="advNumbersGame" class="btn">Numbers</a></li>
+							</ul>
+				  	 	</div>
+						
+		    			<!-- memory game -->
+		    			<div class="adv_memory_game">
+						<div id="adv_game_time"></div>
+						<div id = "adv_memory_board"></div>
+							<script>newAdvBoard();</script>
+						</div>
+						
+						<div class="adv_quiz_game">
+						<div id="adv_countdown"></div>
+							<h2 id ="adv_quiz_status"></h2>
+							<div id="adv_quiz">
+								<div id = "advQuizBody"></div>		
+							</div>
+						</div>
+				
+						<div class="hangman_game">
+							<div id="buttons"></div>  
+							<div id="hold"></div>
+							<p id="myLives"></p>
+							<canvas id="stickman" style= "width:300px">Browser doesn't support HTML canvas</canvas>
+							<div class="container">
+								<button id="reset" class='btn'>Play again</button>
+								<button id="advHBackBtn" class='btn'>Back to Menu</button>
+							</div>
+						</div>	
+
+						<div id = "advMain">
+							<canvas id = "canvas5" width = "800" height = "800"></canvas>
+						</div>
+				</div>
+					</section>
+            </div>
+        </article>
+    </div>
+</section>
+
+<!-- ######################## Footer ######################## -->  
+      
+<footer>
+    <div class="row">
+		<div class="twelve columns footer">
+            <a href="https://twitter.com/brainygame2015" id="twitter"><img src = "img/twitter.png"></a> 
+            <a href="https://www.facebook.com/brainygame2015" ><img src="img/facebook.png"></a>
+        </div>   
+    </div>
+</footer>		  
+
+<!-- ######################## Scripts ######################## --> 
+
+    <!-- Included JS Files (Compressed) -->
+    <script type="text/javascript" src="frameworkJS/foundation.min.js" ></script>
+	<script type="text/javascript" src="js/jquery/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript" src="js/jquery/jquery.leanModal.min.js"></script> 
+	<script type="text/javascript" src="js/countdownTimer/jquery.countdown360.js" charset="utf-8"></script>
+	<script type="text/javascript" src="js/countdownTimer/countdown.js"  charset="utf-8"></script> 
+    
+    <!-- Initialize JS Plugins -->
+     <script type="text/javascript" src="frameworkJS/app.js" ></script>
+	
+	<script type="text/javascript" charset="utf-8">
+	//displays multiple lean modal popups on one page
+	$("a[rel*=leanModal]").leanModal({top : 200, overlay : 0.6, closeButton: ".modal_close" });
+	
+		$(function(){
+			
+			//calling memory game
+			$("#begMemoryGame").click(function(){
+				$(".beginner_menu").hide();
+				$(".beg_memory_game").show();
+				$("#beg_memory_board").css("display", "block");
+				$(".header_title").text('Beginner Memory Game');
+				return false;
+			});
+			
+			//calling memory game
+			$("#advMemoryGame").click(function(){
+				$(".advanced_menu").hide();
+				$(".adv_memory_game").show();
+				$("#adv_memory_board").css("display", "block");				
+				$(".header_title").text('Advanced Memory Game');
+				return false;
+			});
+			
+			//calling beginner quiz game
+			$("#begQuizGame").click(function(){
+				$(".beginner_menu").hide();
+				$(".beg_quiz_game").show();
+				$("#beg_countdown").css("display", "block");
+				$("#beg_quiz").css("display", "block");
+				$("#beg_quiz_status").css("display", "block");
+				$("canvas").css("display", "block");
+				beg_countdown.start();
+				$(".header_title").text('Beginner Quiz Game');
+				return false;
+			});
+			
+			//calling advanced quiz game
+			$("#advQuizGame").click(function(){
+				$(".advanced_menu").hide();
+				$(".adv_quiz_game").show();
+				$("#adv_countdown").css("display", "block");
+				$("#adv_quiz").css("display", "block");
+				$("#adv_quiz_status").css("display", "block");
+				$("canvas").css("display", "block");
+				$(".hangman_game").hide();
+				adv_countdown.start();
+				$(".header_title").text('Advanced Quiz Game');
+				return false;
+			});
+			
+			//calling simon says game
+			$("#simonSaysGame").click(function(){
+				$(".beginner_menu").hide();
+				$(".simon_says_game").show();
+				$(".simonSaysGame").css("display", "block");
+				$(".game-info").css("display", "block");
+				$(".header_title").text('Simon Says');
+				return false;
+			});
+			
+			//calling menu from simon says game
+			$("#begSBackBtn").click(function(){
+				$(".simon_says_game").hide();
+				$(".beginner_menu").show();
+				$(".header_title").text('Choose A Game To Play');
+				return false;
+			});
+			
+			//calling hangman game
+			$("#hangmanGame").click(function(){
+				$(".advanced_menu").hide();
+				$("#advBackBtn").show();
+				$(".hangman_game").show();
+				$("#buttons").css("display", "block");
+				$("#myLives").css("display", "block");
+				$("canvas#stickman").css("display", "block");
+				$("#my-word").css("display", "inline-block");
+				$(".container").css("display", "block");
+				$("#reset").css("display", "block");
+				$(".header_title").text('Hangman');
+				return false;
+			});
+			
+			//calling advanced menu from hangman game
+			$("#advHBackBtn").click(function(){
+				$(".hangman_game").hide();
+				$(".advanced_menu").show();
+				$(".header_title").text('Choose A Game To Play');
+				return false;
+			});
+			
+			//calling beginner number game
+			$("#begNumbersGame").click(function(){
+				$(".beginner_menu").hide();
+				$(".beg_numbers_game").show();
+				$("#begMain").css("display", "block");
+				$(".header_title").text('Beginner Numbers Game');
+				return false;
+			});
+			
+			//calling advanced number game
+			$("#advNumbersGame").click(function(){
+				$(".advanced_menu").hide();
+				$(".adv_numbers_game").show();
+				$("#advMain").css("display", "block");
+				$(".header_title").text('Advanced Numbers Game');
+				return false;
+			});
+		});
+	</script>
+</body>
+</html>
